@@ -4,3 +4,5 @@
 *.docx
 _to_delete/reference
 .env
+# R
+.Rhistory

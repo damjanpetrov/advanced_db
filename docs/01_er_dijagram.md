@@ -2,7 +2,9 @@
 
 **Статус:** во тек, не е одобрен.
 **Алатка:** Visual Paradigm (desktop).
-**Тековна слика:** `images/er_v2.png`. Додај ја по ажурирањето во VP со Export → Image. Старата верзија е во `reference/er_diagram_picture.png`.
+**Дијаграм:** [`diagrams/er-diagram.vpp`](diagrams/er-diagram.vpp) (Visual Paradigm) · **Слика:** [`diagrams/er-diagram-picture.jpg`](diagrams/er-diagram-picture.jpg). Првата верзија е во `reference/er_diagram_picture.png`.
+
+![ЕР дијаграм](diagrams/er-diagram-picture.jpg)
 
 ## 1. Преглед на моделот
 
@@ -87,3 +89,19 @@
 | --- | --- | --- | --- |
 | | асистент | | |
 | | професор | | |
+
+## 6. Усогласеност со DDL
+
+ЕР дијаграмот е спореден програмски со шемата од `00_ddl/ddl_v2.sql`. Споредбата е направена директно од `.vpp` фајлот и од каталогот на PostgreSQL, на 2026-10-20.
+
+| Проверка | ЕР | DDL | Резултат |
+| --- | --- | --- | --- |
+| Табели | 27 | 27 | исти |
+| Колони (име, тип, должина, NULL) | 144 | 144 | 0 разлики |
+| Надворешни клучеви | 32 | 32 | исти, со исти имиња |
+| UNIQUE ограничувања | 19 | 19 | исти |
+
+Не се прикажани во ЕР, туку се само во DDL:
+
+- **CHECK ограничувањата и DEFAULT вредностите.** Тие не се дел од ЕР нотацијата.
+- **Уникатниот индекс на `lower(email)`** кај `customer`, `employee` и `supplier`. Visual Paradigm не моделира индекс врз израз.

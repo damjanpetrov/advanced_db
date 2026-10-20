@@ -1,6 +1,6 @@
 # Речник на податоци (data dictionary)
 
-> Автоматски генерирано од базата со `scripts/data_dictionary.sql` на 2026-10-20 18:11. Не уредувај рачно.
+> Автоматски генерирано од базата со `scripts/data_dictionary.sql` на 2026-10-20 22:02. Не уредувај рачно.
 
 Вкупно табели: 27
 
@@ -19,6 +19,10 @@ _Адреси за достава._
 | Ограничување | Тип | Дефиниција |
 | --- | --- | --- |
 | `address_pkey` | PK | `PRIMARY KEY (address_id)` |
+| `address_address_id_not_null` | n | `NOT NULL address_id` |
+| `address_city_not_null` | n | `NOT NULL city` |
+| `address_country_not_null` | n | `NOT NULL country` |
+| `address_street_not_null` | n | `NOT NULL street` |
 
 ## address_customer
 
@@ -36,6 +40,9 @@ _M:N врска купувач–адреса; цел на композитни�
 | `fk_address_customer_address` | FK | `FOREIGN KEY (address_id) REFERENCES address(address_id) ON UPDATE CASCADE ON DELETE CASCADE` |
 | `fk_address_customer_customer` | FK | `FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON UPDATE CASCADE ON DELETE CASCADE` |
 | `uq_address_customer` | UNIQUE | `UNIQUE (customer_id, address_id)` |
+| `address_customer_address_customer_id_not_null` | n | `NOT NULL address_customer_id` |
+| `address_customer_address_id_not_null` | n | `NOT NULL address_id` |
+| `address_customer_customer_id_not_null` | n | `NOT NULL customer_id` |
 
 ## category
 
@@ -53,7 +60,9 @@ _Хиерархија на категории (parent_category_id)._
 | `category_pkey` | PK | `PRIMARY KEY (category_id)` |
 | `fk_category_self` | FK | `FOREIGN KEY (parent_category_id) REFERENCES category(category_id) ON UPDATE CASCADE ON DELETE SET NULL` |
 | `uq_category_name` | UNIQUE | `UNIQUE NULLS NOT DISTINCT (parent_category_id, name)` |
+| `category_category_id_not_null` | n | `NOT NULL category_id` |
 | `category_name_check` | CHECK | `CHECK (((name)::text <> ''::text))` |
+| `category_name_not_null` | n | `NOT NULL name` |
 | `chk_category_not_self` | CHECK | `CHECK (((parent_category_id IS NULL) OR (parent_category_id <> category_id)))` |
 
 ## customer
@@ -75,11 +84,18 @@ _Регистрирани купувачи. Не се бришат, се деа�
 | --- | --- | --- |
 | `customer_pkey` | PK | `PRIMARY KEY (customer_id)` |
 | `uq_customer_email` | UNIQUE INDEX | `CREATE UNIQUE INDEX uq_customer_email ON public.customer USING btree (lower((email)::text))` |
+| `customer_created_at_not_null` | n | `NOT NULL created_at` |
+| `customer_customer_id_not_null` | n | `NOT NULL customer_id` |
 | `customer_email_check` | CHECK | `CHECK (((email)::text ~ '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'::text))` |
+| `customer_email_not_null` | n | `NOT NULL email` |
+| `customer_is_active_not_null` | n | `NOT NULL is_active` |
 | `customer_name_check` | CHECK | `CHECK (((name)::text <> ''::text))` |
+| `customer_name_not_null` | n | `NOT NULL name` |
 | `customer_password_check` | CHECK | `CHECK ((length((password)::text) >= 8))` |
+| `customer_password_not_null` | n | `NOT NULL password` |
 | `customer_phone_check` | CHECK | `CHECK (((phone IS NULL) OR ((phone)::text ~ '^(\+389[0-9]{8}\|0[0-9]{8})$'::text)))` |
 | `customer_surname_check` | CHECK | `CHECK (((surname)::text <> ''::text))` |
+| `customer_surname_not_null` | n | `NOT NULL surname` |
 
 ## customer_attribute
 
@@ -97,6 +113,9 @@ _Проширливи атрибути на купувач (име–вредн�
 | `customer_attribute_pkey` | PK | `PRIMARY KEY (attribute_id)` |
 | `fk_customer_attribute_customer` | FK | `FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON UPDATE CASCADE ON DELETE CASCADE` |
 | `uq_customer_attribute` | UNIQUE | `UNIQUE (customer_id, name)` |
+| `customer_attribute_attribute_id_not_null` | n | `NOT NULL attribute_id` |
+| `customer_attribute_customer_id_not_null` | n | `NOT NULL customer_id` |
+| `customer_attribute_name_not_null` | n | `NOT NULL name` |
 
 ## customer_support_report
 
@@ -121,6 +140,11 @@ _Пријави/поплаки до корисничка поддршка._
 | `fk_support_order` | FK | `FOREIGN KEY (order_id) REFERENCES orders(order_id) ON UPDATE CASCADE ON DELETE SET NULL` |
 | `chk_support_resolved` | CHECK | `CHECK (((NOT issue_solved) OR (resolved_at IS NOT NULL)))` |
 | `customer_support_report_complaint_check` | CHECK | `CHECK ((complaint <> ''::text))` |
+| `customer_support_report_complaint_not_null` | n | `NOT NULL complaint` |
+| `customer_support_report_customer_id_not_null` | n | `NOT NULL customer_id` |
+| `customer_support_report_date_not_null` | n | `NOT NULL date` |
+| `customer_support_report_issue_solved_not_null` | n | `NOT NULL issue_solved` |
+| `customer_support_report_report_id_not_null` | n | `NOT NULL report_id` |
 
 ## employee
 
@@ -142,12 +166,19 @@ _Вработени во продавницата; email уникатен без
 | --- | --- | --- |
 | `employee_pkey` | PK | `PRIMARY KEY (employee_id)` |
 | `uq_employee_email` | UNIQUE INDEX | `CREATE UNIQUE INDEX uq_employee_email ON public.employee USING btree (lower((email)::text))` |
+| `employee_created_at_not_null` | n | `NOT NULL created_at` |
 | `employee_email_check` | CHECK | `CHECK (((email)::text ~ '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'::text))` |
+| `employee_email_not_null` | n | `NOT NULL email` |
+| `employee_employee_id_not_null` | n | `NOT NULL employee_id` |
+| `employee_is_active_not_null` | n | `NOT NULL is_active` |
 | `employee_name_check` | CHECK | `CHECK (((name)::text <> ''::text))` |
+| `employee_name_not_null` | n | `NOT NULL name` |
 | `employee_password_check` | CHECK | `CHECK ((length((password)::text) >= 8))` |
+| `employee_password_not_null` | n | `NOT NULL password` |
 | `employee_phone_check` | CHECK | `CHECK (((phone IS NULL) OR ((phone)::text ~ '^(\+389[0-9]{8}\|0[0-9]{8})$'::text)))` |
 | `employee_salary_check` | CHECK | `CHECK (((salary IS NULL) OR (salary >= (0)::numeric)))` |
 | `employee_surname_check` | CHECK | `CHECK (((surname)::text <> ''::text))` |
+| `employee_surname_not_null` | n | `NOT NULL surname` |
 
 ## employee_role
 
@@ -165,6 +196,9 @@ _M:N врска вработен–улога; вработен може да и
 | `fk_employee_role_employee` | FK | `FOREIGN KEY (employee_id) REFERENCES employee(employee_id) ON UPDATE CASCADE ON DELETE CASCADE` |
 | `fk_employee_role_role` | FK | `FOREIGN KEY (role_id) REFERENCES role(role_id) ON UPDATE CASCADE ON DELETE CASCADE` |
 | `uq_employee_role` | UNIQUE | `UNIQUE (employee_id, role_id)` |
+| `employee_role_employee_id_not_null` | n | `NOT NULL employee_id` |
+| `employee_role_employee_role_id_not_null` | n | `NOT NULL employee_role_id` |
+| `employee_role_role_id_not_null` | n | `NOT NULL role_id` |
 
 ## installments
 
@@ -186,7 +220,12 @@ _Рати за нарачка платена на рати._
 | `fk_installments_order` | FK | `FOREIGN KEY (order_id) REFERENCES orders(order_id) ON UPDATE CASCADE ON DELETE CASCADE` |
 | `uq_installment` | UNIQUE | `UNIQUE (order_id, installment_no)` |
 | `installments_amount_check` | CHECK | `CHECK ((amount > (0)::numeric))` |
+| `installments_amount_not_null` | n | `NOT NULL amount` |
+| `installments_due_date_not_null` | n | `NOT NULL due_date` |
+| `installments_installment_id_not_null` | n | `NOT NULL installment_id` |
 | `installments_installment_no_check` | CHECK | `CHECK (((installment_no >= 1) AND (installment_no <= 60)))` |
+| `installments_installment_no_not_null` | n | `NOT NULL installment_no` |
+| `installments_order_id_not_null` | n | `NOT NULL order_id` |
 
 ## order_item
 
@@ -207,9 +246,15 @@ _Ставки во нарачка; unit_price е цената во момент�
 | `fk_order_item_order` | FK | `FOREIGN KEY (order_id) REFERENCES orders(order_id) ON UPDATE CASCADE ON DELETE CASCADE` |
 | `fk_order_item_product` | FK | `FOREIGN KEY (product_id) REFERENCES product(product_id) ON UPDATE CASCADE ON DELETE RESTRICT` |
 | `uq_order_item` | UNIQUE | `UNIQUE (order_id, product_id)` |
+| `order_item_order_id_not_null` | n | `NOT NULL order_id` |
+| `order_item_order_item_id_not_null` | n | `NOT NULL order_item_id` |
+| `order_item_product_id_not_null` | n | `NOT NULL product_id` |
 | `order_item_quantity_check` | CHECK | `CHECK ((quantity > 0))` |
+| `order_item_quantity_not_null` | n | `NOT NULL quantity` |
 | `order_item_status_check` | CHECK | `CHECK (((status)::text = ANY ((ARRAY['pending'::character varying, 'processed'::character varying, 'shipped'::character varying, 'delivered'::character varying, 'cancelled'::character varying])::text[])))` |
+| `order_item_status_not_null` | n | `NOT NULL status` |
 | `order_item_unit_price_check` | CHECK | `CHECK ((unit_price >= (0)::numeric))` |
+| `order_item_unit_price_not_null` | n | `NOT NULL unit_price` |
 
 ## orders
 
@@ -236,9 +281,16 @@ _Нарачки; amount е збир на ставките, адресата мо
 | `orders_shipping_id_key` | UNIQUE | `UNIQUE (shipping_id)` |
 | `chk_orders_paid_has_date` | CHECK | `CHECK ((((status)::text <> ALL ((ARRAY['paid'::character varying, 'shipped'::character varying, 'delivered'::character varying])::text[])) OR (date_paid IS NOT NULL)))` |
 | `chk_orders_payment_date` | CHECK | `CHECK (((date_paid IS NULL) OR (date_paid >= date_ordered)))` |
+| `orders_address_id_not_null` | n | `NOT NULL address_id` |
 | `orders_amount_check` | CHECK | `CHECK ((amount >= (0)::numeric))` |
+| `orders_amount_not_null` | n | `NOT NULL amount` |
+| `orders_customer_id_not_null` | n | `NOT NULL customer_id` |
+| `orders_date_ordered_not_null` | n | `NOT NULL date_ordered` |
 | `orders_method_payment_check` | CHECK | `CHECK (((method_payment)::text = ANY ((ARRAY['card'::character varying, 'cash_on_delivery'::character varying, 'bank_transfer'::character varying, 'installments'::character varying])::text[])))` |
+| `orders_method_payment_not_null` | n | `NOT NULL method_payment` |
+| `orders_order_id_not_null` | n | `NOT NULL order_id` |
 | `orders_status_check` | CHECK | `CHECK (((status)::text = ANY ((ARRAY['pending'::character varying, 'paid'::character varying, 'shipped'::character varying, 'delivered'::character varying, 'cancelled'::character varying])::text[])))` |
+| `orders_status_not_null` | n | `NOT NULL status` |
 
 ## permission
 
@@ -254,6 +306,8 @@ _Дозволи во системот, со уникатен код (пр. order
 | --- | --- | --- |
 | `permission_pkey` | PK | `PRIMARY KEY (permission_id)` |
 | `permission_name_key` | UNIQUE | `UNIQUE (name)` |
+| `permission_name_not_null` | n | `NOT NULL name` |
+| `permission_permission_id_not_null` | n | `NOT NULL permission_id` |
 
 ## price_history
 
@@ -271,7 +325,11 @@ _Историја на продажната цена, најмногу една 
 | `price_history_pkey` | PK | `PRIMARY KEY (price_history_id)` |
 | `fk_price_history_product` | FK | `FOREIGN KEY (product_id) REFERENCES product(product_id) ON UPDATE CASCADE ON DELETE CASCADE` |
 | `uq_price_history` | UNIQUE | `UNIQUE (product_id, date)` |
+| `price_history_date_not_null` | n | `NOT NULL date` |
 | `price_history_price_check` | CHECK | `CHECK ((price > (0)::numeric))` |
+| `price_history_price_history_id_not_null` | n | `NOT NULL price_history_id` |
+| `price_history_price_not_null` | n | `NOT NULL price` |
+| `price_history_product_id_not_null` | n | `NOT NULL product_id` |
 
 ## product
 
@@ -292,8 +350,14 @@ _Производи во каталогот; price е тековната про�
 | --- | --- | --- |
 | `product_pkey` | PK | `PRIMARY KEY (product_id)` |
 | `fk_product_category` | FK | `FOREIGN KEY (category_id) REFERENCES category(category_id) ON UPDATE CASCADE ON DELETE RESTRICT` |
+| `product_category_id_not_null` | n | `NOT NULL category_id` |
+| `product_created_at_not_null` | n | `NOT NULL created_at` |
+| `product_is_active_not_null` | n | `NOT NULL is_active` |
 | `product_name_check` | CHECK | `CHECK (((name)::text <> ''::text))` |
+| `product_name_not_null` | n | `NOT NULL name` |
 | `product_price_check` | CHECK | `CHECK ((price > (0)::numeric))` |
+| `product_price_not_null` | n | `NOT NULL price` |
+| `product_product_id_not_null` | n | `NOT NULL product_id` |
 
 ## product_attribute
 
@@ -311,6 +375,10 @@ _Технички карактеристики на производ (RAM, SSD, 
 | `product_attribute_pkey` | PK | `PRIMARY KEY (product_attribute_id)` |
 | `fk_product_attribute_product` | FK | `FOREIGN KEY (product_id) REFERENCES product(product_id) ON UPDATE CASCADE ON DELETE CASCADE` |
 | `uq_product_attribute` | UNIQUE | `UNIQUE (product_id, name)` |
+| `product_attribute_name_not_null` | n | `NOT NULL name` |
+| `product_attribute_product_attribute_id_not_null` | n | `NOT NULL product_attribute_id` |
+| `product_attribute_product_id_not_null` | n | `NOT NULL product_id` |
+| `product_attribute_value_not_null` | n | `NOT NULL value` |
 
 ## product_supplier
 
@@ -329,7 +397,10 @@ _M:N врска производ–добавувач, со набавна це�
 | `fk_product_supplier_product` | FK | `FOREIGN KEY (product_id) REFERENCES product(product_id) ON UPDATE CASCADE ON DELETE CASCADE` |
 | `fk_product_supplier_supplier` | FK | `FOREIGN KEY (supplier_id) REFERENCES supplier(supplier_id) ON UPDATE CASCADE ON DELETE CASCADE` |
 | `uq_product_supplier` | UNIQUE | `UNIQUE (product_id, supplier_id)` |
+| `product_supplier_product_id_not_null` | n | `NOT NULL product_id` |
+| `product_supplier_product_supplier_id_not_null` | n | `NOT NULL product_supplier_id` |
 | `product_supplier_purchase_price_check` | CHECK | `CHECK (((purchase_price IS NULL) OR (purchase_price > (0)::numeric)))` |
+| `product_supplier_supplier_id_not_null` | n | `NOT NULL supplier_id` |
 
 ## promotion
 
@@ -348,7 +419,12 @@ _Процентуален попуст на производ во временс
 | `promotion_pkey` | PK | `PRIMARY KEY (promotion_id)` |
 | `fk_promotion_product` | FK | `FOREIGN KEY (product_id) REFERENCES product(product_id) ON UPDATE CASCADE ON DELETE CASCADE` |
 | `chk_promotion_dates` | CHECK | `CHECK ((start_date <= end_date))` |
+| `promotion_end_date_not_null` | n | `NOT NULL end_date` |
 | `promotion_percent_check` | CHECK | `CHECK (((percent > (0)::numeric) AND (percent <= (100)::numeric)))` |
+| `promotion_percent_not_null` | n | `NOT NULL percent` |
+| `promotion_product_id_not_null` | n | `NOT NULL product_id` |
+| `promotion_promotion_id_not_null` | n | `NOT NULL promotion_id` |
+| `promotion_start_date_not_null` | n | `NOT NULL start_date` |
 
 ## returns
 
@@ -371,8 +447,13 @@ _Барања за враќање на ставка и нивна обработ
 | `fk_returns_employee` | FK | `FOREIGN KEY (employee_id) REFERENCES employee(employee_id) ON UPDATE CASCADE ON DELETE SET NULL` |
 | `fk_returns_order_item` | FK | `FOREIGN KEY (order_item_id) REFERENCES order_item(order_item_id) ON UPDATE CASCADE ON DELETE CASCADE` |
 | `chk_returns_decided` | CHECK | `CHECK ((((status)::text = 'requested'::text) OR (employee_id IS NOT NULL)))` |
+| `returns_date_not_null` | n | `NOT NULL date` |
+| `returns_order_item_id_not_null` | n | `NOT NULL order_item_id` |
 | `returns_quantity_check` | CHECK | `CHECK ((quantity > 0))` |
+| `returns_quantity_not_null` | n | `NOT NULL quantity` |
+| `returns_return_id_not_null` | n | `NOT NULL return_id` |
 | `returns_status_check` | CHECK | `CHECK (((status)::text = ANY ((ARRAY['requested'::character varying, 'approved'::character varying, 'rejected'::character varying, 'completed'::character varying])::text[])))` |
+| `returns_status_not_null` | n | `NOT NULL status` |
 
 ## review
 
@@ -391,7 +472,11 @@ _Рецензија (1–5) за купена ставка; најмногу е�
 | `review_pkey` | PK | `PRIMARY KEY (review_id)` |
 | `fk_review_order_item` | FK | `FOREIGN KEY (order_item_id) REFERENCES order_item(order_item_id) ON UPDATE CASCADE ON DELETE CASCADE` |
 | `review_order_item_id_key` | UNIQUE | `UNIQUE (order_item_id)` |
+| `review_date_not_null` | n | `NOT NULL date` |
+| `review_order_item_id_not_null` | n | `NOT NULL order_item_id` |
 | `review_rating_check` | CHECK | `CHECK (((rating >= 1) AND (rating <= 5)))` |
+| `review_rating_not_null` | n | `NOT NULL rating` |
+| `review_review_id_not_null` | n | `NOT NULL review_id` |
 
 ## role
 
@@ -407,6 +492,8 @@ _Улоги на вработени (администратор, магацио�
 | `role_pkey` | PK | `PRIMARY KEY (role_id)` |
 | `role_role_key` | UNIQUE | `UNIQUE (role)` |
 | `role_role_check` | CHECK | `CHECK (((role)::text <> ''::text))` |
+| `role_role_id_not_null` | n | `NOT NULL role_id` |
+| `role_role_not_null` | n | `NOT NULL role` |
 
 ## role_permission
 
@@ -424,6 +511,9 @@ _M:N врска улога–дозвола._
 | `fk_role_permission_permission` | FK | `FOREIGN KEY (permission_id) REFERENCES permission(permission_id) ON UPDATE CASCADE ON DELETE CASCADE` |
 | `fk_role_permission_role` | FK | `FOREIGN KEY (role_id) REFERENCES role(role_id) ON UPDATE CASCADE ON DELETE CASCADE` |
 | `uq_role_permission` | UNIQUE | `UNIQUE (role_id, permission_id)` |
+| `role_permission_permission_id_not_null` | n | `NOT NULL permission_id` |
+| `role_permission_role_id_not_null` | n | `NOT NULL role_id` |
+| `role_permission_role_permission_id_not_null` | n | `NOT NULL role_permission_id` |
 
 ## serial_number
 
@@ -447,7 +537,13 @@ _Поединечни уреди со сериски број: магацин, �
 | `fk_serial_warehouse` | FK | `FOREIGN KEY (warehouse_id) REFERENCES warehouse(warehouse_id) ON UPDATE CASCADE ON DELETE RESTRICT` |
 | `serial_number_serial_code_key` | UNIQUE | `UNIQUE (serial_code)` |
 | `chk_serial_sold` | CHECK | `CHECK ((((status)::text <> 'sold'::text) OR (order_item_id IS NOT NULL)))` |
+| `serial_number_product_id_not_null` | n | `NOT NULL product_id` |
+| `serial_number_received_at_not_null` | n | `NOT NULL received_at` |
+| `serial_number_serial_code_not_null` | n | `NOT NULL serial_code` |
+| `serial_number_serial_number_id_not_null` | n | `NOT NULL serial_number_id` |
 | `serial_number_status_check` | CHECK | `CHECK (((status)::text = ANY ((ARRAY['in_stock'::character varying, 'reserved'::character varying, 'sold'::character varying, 'returned'::character varying, 'defective'::character varying])::text[])))` |
+| `serial_number_status_not_null` | n | `NOT NULL status` |
+| `serial_number_warehouse_id_not_null` | n | `NOT NULL warehouse_id` |
 
 ## shipping
 
@@ -468,7 +564,10 @@ _Пратка за една нарачка: карго, tracking број, ст�
 | `shipping_tracking_number_key` | UNIQUE | `UNIQUE (tracking_number)` |
 | `chk_shipping_dates` | CHECK | `CHECK (((delivered_date IS NULL) OR (delivered_date >= date)))` |
 | `chk_shipping_delivered` | CHECK | `CHECK ((((status)::text <> 'delivered'::text) OR (delivered_date IS NOT NULL)))` |
+| `shipping_date_not_null` | n | `NOT NULL date` |
+| `shipping_shipping_id_not_null` | n | `NOT NULL shipping_id` |
 | `shipping_status_check` | CHECK | `CHECK (((status)::text = ANY ((ARRAY['preparing'::character varying, 'in_transit'::character varying, 'delivered'::character varying, 'returned'::character varying])::text[])))` |
+| `shipping_status_not_null` | n | `NOT NULL status` |
 
 ## supplier
 
@@ -488,7 +587,9 @@ _Добавувачи на производи._
 | `uq_supplier_email` | UNIQUE INDEX | `CREATE UNIQUE INDEX uq_supplier_email ON public.supplier USING btree (lower((email)::text))` |
 | `supplier_email_check` | CHECK | `CHECK (((email IS NULL) OR ((email)::text ~ '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'::text)))` |
 | `supplier_name_check` | CHECK | `CHECK (((name)::text <> ''::text))` |
+| `supplier_name_not_null` | n | `NOT NULL name` |
 | `supplier_phone_check` | CHECK | `CHECK (((phone IS NULL) OR ((phone)::text ~ '^\+?[0-9]{6,15}$'::text)))` |
+| `supplier_supplier_id_not_null` | n | `NOT NULL supplier_id` |
 
 ## warehouse
 
@@ -507,6 +608,10 @@ _Магацини._
 | --- | --- | --- |
 | `warehouse_pkey` | PK | `PRIMARY KEY (warehouse_id)` |
 | `warehouse_name_key` | UNIQUE | `UNIQUE (name)` |
+| `warehouse_city_not_null` | n | `NOT NULL city` |
+| `warehouse_country_not_null` | n | `NOT NULL country` |
+| `warehouse_name_not_null` | n | `NOT NULL name` |
+| `warehouse_warehouse_id_not_null` | n | `NOT NULL warehouse_id` |
 
 ## wishlist
 
@@ -524,6 +629,10 @@ _Листи на желби на купувач._
 | `wishlist_pkey` | PK | `PRIMARY KEY (wishlist_id)` |
 | `fk_wishlist_customer` | FK | `FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON UPDATE CASCADE ON DELETE CASCADE` |
 | `uq_wishlist_name` | UNIQUE | `UNIQUE (customer_id, name)` |
+| `wishlist_created_at_not_null` | n | `NOT NULL created_at` |
+| `wishlist_customer_id_not_null` | n | `NOT NULL customer_id` |
+| `wishlist_name_not_null` | n | `NOT NULL name` |
+| `wishlist_wishlist_id_not_null` | n | `NOT NULL wishlist_id` |
 
 ## wishlist_items
 
@@ -542,4 +651,8 @@ _Производи во листа на желби._
 | `fk_wishlist_items_product` | FK | `FOREIGN KEY (product_id) REFERENCES product(product_id) ON UPDATE CASCADE ON DELETE CASCADE` |
 | `fk_wishlist_items_wishlist` | FK | `FOREIGN KEY (wishlist_id) REFERENCES wishlist(wishlist_id) ON UPDATE CASCADE ON DELETE CASCADE` |
 | `uq_wishlist_product` | UNIQUE | `UNIQUE (wishlist_id, product_id)` |
+| `wishlist_items_added_at_not_null` | n | `NOT NULL added_at` |
+| `wishlist_items_product_id_not_null` | n | `NOT NULL product_id` |
+| `wishlist_items_wishlist_id_not_null` | n | `NOT NULL wishlist_id` |
+| `wishlist_items_wishlist_item_id_not_null` | n | `NOT NULL wishlist_item_id` |
 
