@@ -15,7 +15,7 @@ Read this whole file before doing any work.
 
 | Phase | Status |
 | --- | --- |
-| 0 — Project description | done |
+| 0 — Project description | updated to the final model (docs/00_opis_proekt.md), awaiting approval |
 | 1 — ER diagram (Visual Paradigm) | in progress — not approved |
 | 2A — DDL | draft: `00_ddl/ddl_v2.sql`, 48/48 constraint tests pass |
 | 2B — Data + views | not started |
