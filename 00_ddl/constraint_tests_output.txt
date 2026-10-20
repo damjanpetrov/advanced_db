@@ -1,0 +1,49 @@
+-- PostgreSQL 16 (sandbox), 2026-10-20
+PASS  [ok]    customer valid (+389 phone)
+PASS  [ok]    customer valid (0 phone)
+PASS  [ok]    address + address_customer valid
+PASS  [ok]    category + product valid
+PASS  [ok]    employee valid
+PASS  [ok]    warehouse valid
+PASS  [ok]    order + order_item valid
+PASS  [ok]    serial sold with order_item
+PASS  [error] customer email unique (case-insensitive) -> duplicate key value violates unique constraint "customer_pkey"
+PASS  [error] customer email format -> new row for relation "customer" violates check constraint "customer_email_check"
+PASS  [error] customer empty name -> new row for relation "customer" violates check constraint "customer_name_check"
+PASS  [error] customer password length >= 8 -> new row for relation "customer" violates check constraint "customer_password_check"
+PASS  [error] customer phone format -> new row for relation "customer" violates check constraint "customer_phone_check"
+PASS  [error] employee salary >= 0 -> new row for relation "employee" violates check constraint "employee_salary_check"
+PASS  [error] supplier email unique -> duplicate key value violates unique constraint "uq_supplier_email"
+PASS  [error] customer_attribute unique (customer,name) -> duplicate key value violates unique constraint "uq_customer_attribute"
+PASS  [error] address_customer unique pair -> duplicate key value violates unique constraint "uq_address_customer"
+PASS  [error] category name unique under same parent -> duplicate key value violates unique constraint "category_pkey"
+PASS  [error] category cannot be own parent -> new row for relation "category" violates check constraint "chk_category_not_self"
+PASS  [error] product price > 0 -> new row for relation "product" violates check constraint "product_price_check"
+PASS  [error] product category FK -> insert or update on table "product" violates foreign key constraint "fk_product_category"
+PASS  [error] product_attribute unique (product,name) -> duplicate key value violates unique constraint "uq_product_attribute"
+PASS  [error] price_history price > 0 -> new row for relation "price_history" violates check constraint "price_history_price_check"
+PASS  [error] price_history one per product/day -> duplicate key value violates unique constraint "uq_price_history"
+PASS  [error] promotion percent in (0,100] -> new row for relation "promotion" violates check constraint "promotion_percent_check"
+PASS  [error] promotion start <= end -> new row for relation "promotion" violates check constraint "chk_promotion_dates"
+PASS  [error] category with products cannot be deleted (RESTRICT) -> update or delete on table "category" violates foreign key constraint "fk_product_category" on table "product"
+PASS  [error] order address must belong to customer -> duplicate key value violates unique constraint "orders_pkey"
+PASS  [error] paid order needs date_paid -> new row for relation "orders" violates check constraint "chk_orders_paid_has_date"
+PASS  [error] date_paid >= date_ordered -> new row for relation "orders" violates check constraint "chk_orders_payment_date"
+PASS  [error] order status domain -> new row for relation "orders" violates check constraint "orders_status_check"
+PASS  [error] payment method domain -> new row for relation "orders" violates check constraint "orders_method_payment_check"
+PASS  [error] customer with orders cannot be deleted (RESTRICT) -> update or delete on table "customer" violates foreign key constraint "fk_orders_customer" on table "orders"
+PASS  [error] order_item quantity > 0 -> new row for relation "order_item" violates check constraint "order_item_quantity_check"
+PASS  [error] order_item product once per order -> duplicate key value violates unique constraint "uq_order_item"
+PASS  [error] installment unique number per order -> duplicate key value violates unique constraint "uq_installment"
+PASS  [error] installment amount > 0 -> new row for relation "installments" violates check constraint "installments_amount_check"
+PASS  [error] shipping delivered needs delivered_date -> new row for relation "shipping" violates check constraint "chk_shipping_delivered"
+PASS  [error] shipping tracking_number unique -> duplicate key value violates unique constraint "shipping_tracking_number_key"
+PASS  [error] serial_code unique -> duplicate key value violates unique constraint "serial_number_serial_code_key"
+PASS  [error] sold serial needs order_item -> new row for relation "serial_number" violates check constraint "chk_serial_sold"
+PASS  [error] warehouse with stock cannot be deleted (RESTRICT) -> update or delete on table "warehouse" violates foreign key constraint "fk_serial_warehouse" on table "serial_number"
+PASS  [error] review rating 1..5 -> new row for relation "review" violates check constraint "review_rating_check"
+PASS  [error] one review per order_item -> duplicate key value violates unique constraint "review_order_item_id_key"
+PASS  [error] decided return needs employee -> new row for relation "returns" violates check constraint "chk_returns_decided"
+PASS  [ok]    decided return with employee
+PASS  [error] solved support report needs resolved_at -> new row for relation "customer_support_report" violates check constraint "chk_support_resolved"
+PASS  [error] wishlist product once -> duplicate key value violates unique constraint "uq_wishlist_product"
