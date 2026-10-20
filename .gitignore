@@ -2,3 +2,5 @@
 .DS_Store
 .claude/settings.local.json
 *.docx
+_to_delete/reference
+.env
