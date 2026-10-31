@@ -1,0 +1,340 @@
+grp,city,weight
+MK,Скопје,520
+MK,Куманово,100
+MK,Битола,75
+MK,Тетово,70
+MK,Прилеп,66
+MK,Охрид,52
+MK,Гостивар,50
+MK,Велес,48
+MK,Струмица,45
+MK,Штип,44
+MK,Струга,37
+MK,Кавадарци,30
+MK,Кочани,28
+MK,Кичево,27
+MK,Радовиш,24
+MK,Гевгелија,22
+MK,Дебар,15
+MK,Крива Паланка,14
+MK,Свети Николе,13
+MK,Неготино,13
+MK,Делчево,11
+MK,Виница,10
+MK,Ресен,9
+MK,Пробиштип,9
+MK,Берово,7
+MK,Кратово,7
+MK,Валандово,7
+AL,Tiranë,12
+AL,Durrës,11
+AL,Vlorë,10
+AL,Elbasan,9
+AL,Shkodër,8
+AL,Fier,7
+AL,Korçë,6
+AL,Berat,5
+AL,Lushnjë,4
+AL,Kavajë,3
+AL,Gjirokastër,2
+AL,Sarandë,1
+BG,София,12
+BG,Пловдив,11
+BG,Варна,10
+BG,Бургас,9
+BG,Русе,8
+BG,Стара Загора,7
+BG,Плевен,6
+BG,Сливен,5
+BG,Добрич,4
+BG,Шумен,3
+BG,Благоевград,2
+BG,Кюстендил,1
+BG,Петрич,1
+BG,Перник,1
+BG,Хасково,1
+TR,İstanbul,12
+TR,Ankara,11
+TR,İzmir,10
+TR,Bursa,9
+TR,Antalya,8
+TR,Edirne,7
+TR,Eskişehir,6
+TR,Konya,5
+TR,Kocaeli,4
+TR,Tekirdağ,3
+GR,Καρδίτσα,26
+GR,Γρεβενά,25
+GR,Κοζάνη,24
+GR,Ρόδος,23
+GR,Αγ. Νικόλαος,22
+GR,Αθήνα,21
+GR,Ναύπλιο,20
+GR,Αργοστόλι,19
+GR,Κατερίνη,18
+GR,Πολύγυρος,17
+GR,Μεσολόγγι,16
+GR,Ηγουμενίτσα,15
+GR,Έδεσσα,14
+GR,Αλεξανδρούπολη,13
+GR,Κόρινθος,12
+GR,Κομοτηνή,11
+GR,Θεσσαλονίκη,10
+GR,Ξάνθη,9
+GR,Πάτρα,8
+GR,Βέροια,7
+GR,Ηράκλειο,6
+GR,Ρέθυμνο,5
+GR,Βόλος,4
+GR,Καβάλα,3
+GR,Καλαμάτα,2
+HR,Vukovar,26
+HR,Lipik,25
+HR,Crikvenica,24
+HR,Kutina,23
+HR,Vodnjan,22
+HR,Biograd na Moru,21
+HR,Mursko Središće,20
+HR,Cres,19
+HR,Čakovec,18
+HR,Buzet,17
+HR,Ploče,16
+HR,Otok,15
+HR,Buje,14
+HR,Bjelovar,13
+HR,Klanjec,12
+HR,Dubrovnik,11
+HR,Osijek,10
+HR,Daruvar,9
+HR,Kutjevo,8
+HR,Oroslavje,7
+HR,Otočac,6
+HR,Pleternica,5
+HR,Novska,4
+HR,Split,3
+HR,Novalja,2
+SI,Kočevje,26
+SI,Črnomelj,25
+SI,Vrhnika,24
+SI,Ravne na Koroškem,23
+SI,Velenje,22
+SI,Celje,21
+SI,Šempeter pri Gorici,20
+SI,Dravograd,19
+SI,Grosuplje,18
+SI,Domžale,17
+SI,Ljubljana,16
+SI,Sevnica,15
+SI,Železniki,14
+SI,Nova Gorica,13
+SI,Kobarid,12
+SI,Ormož,11
+SI,Idrija,10
+SI,Ribnica,9
+SI,Žalec,8
+SI,Žiri,7
+SI,Lendava,6
+SI,Piran,5
+SI,Šoštanj,4
+SI,Novo mesto,3
+SI,Krško,2
+RO,Dorohoi,26
+RO,Targu Jiu,25
+RO,Fundeni,24
+RO,Macin,23
+RO,Apahida,22
+RO,Suceava,21
+RO,Podu Iloaiei,20
+RO,Barlad,19
+RO,Lugoj,18
+RO,Calarasi,17
+RO,Zimnicea,16
+RO,Targu Lapus,15
+RO,Focsani,14
+RO,Targoviste,13
+RO,Baia Sprie,12
+RO,Caransebes,11
+RO,Schela Cladovei,10
+RO,Pancota,9
+RO,Mangalia,8
+RO,Uricani,7
+RO,Babeni,6
+RO,Talmaciu,5
+RO,Siria,4
+RO,Ianca,3
+RO,Valea lui Mihai,2
+DE,Duderstadt,26
+DE,Stadtsteinach,25
+DE,Bersenbrück,24
+DE,Kehl,23
+DE,Ochsenfurt,22
+DE,Bad Kissingen,21
+DE,Marienberg,20
+DE,Berlin,19
+DE,Bremen,18
+DE,Beeskow,17
+DE,Gardelegen,16
+DE,Roding,15
+DE,Badibling,14
+DE,Bad Mergentheim,13
+DE,Hainichen,12
+DE,Dinkelsbühl,11
+DE,Riesa,10
+DE,Recklinghausen,9
+DE,Burglengenfeld,8
+DE,Kitzingen,7
+DE,Pößneck,6
+DE,Regensburg,5
+DE,Schwarzenberg,4
+DE,Nordhausen,3
+DE,Helmstedt,2
+AT,Feldkirchen,26
+AT,Villach,25
+AT,Bludenz,24
+AT,Liezen,23
+AT,Raabs an der Thaya,22
+AT,Bad Leonfelden,21
+AT,Mürzzuschlag,20
+AT,Bleiburg,19
+AT,Deutsch-Wagram,18
+AT,Berndorf,17
+AT,Graz,16
+AT,Schladming,15
+AT,Bad Vöslau,14
+AT,Bad Sankt Leonhard im Lavanttal,13
+AT,Innsbruck,12
+AT,Feldbach,11
+AT,Scheibbs,10
+AT,Sankt Valentin,9
+AT,Drosendorf-Zissersdorf 1,8
+AT,Linz,7
+AT,Sankt Andrä im Lavanttal,6
+AT,Sankt Veit an der Glan,5
+AT,Straßburg,4
+AT,Purbach am Neusiedler See,3
+AT,Klosterneuburg,2
+IT,Pellare,26
+IT,Castel San Giorgio,25
+IT,Canevare,24
+IT,Filottrano,23
+IT,Sant'Anna Di Chioggia,22
+IT,Montopoli,21
+IT,Volturara Appula,20
+IT,Grottazzolina,19
+IT,Cetona,18
+IT,Brugnato,17
+IT,Gavarno Rinnovata,16
+IT,Dardago,15
+IT,Pizzo,14
+IT,Ried,13
+IT,Codevilla,12
+IT,Colognola Al Piano,11
+IT,Celzi,10
+IT,Sissa,9
+IT,Tornareccio,8
+IT,Villanova Sull'Arda,7
+IT,Ventotene,6
+IT,Montaldo Roero,5
+IT,Anterivo,4
+IT,Roncogno,3
+IT,Leva' Di Montecchio Precalcino,2
+NL,Molenaarsgraaf,26
+NL,Fijnaart,25
+NL,Overlangel,24
+NL,Bergambacht,23
+NL,Britswert,22
+NL,Wehe-den Hoorn,21
+NL,De Krim,20
+NL,Oldebroek,19
+NL,Zuidlaarderveen,18
+NL,Bleiswijk,17
+NL,Velp,16
+NL,Hijken,15
+NL,Barchem,14
+NL,Colmschate,13
+NL,Schardam,12
+NL,Rijkevoort-De Walsert,11
+NL,Bredevoort,10
+NL,Jelsum,9
+NL,De Blesse,8
+NL,Wijhe,7
+NL,Roosteren,6
+NL,Blijham,5
+NL,Wommels,4
+NL,Easterein,3
+NL,Hoofdplaat,2
+ES,Burgos,26
+ES,Segovia,25
+ES,Asturias,24
+ES,Huesca,23
+ES,Málaga,22
+ES,Alicante,21
+ES,Las Palmas,20
+ES,Ávila,19
+ES,Almería,18
+ES,Ceuta,17
+ES,Ourense,16
+ES,Girona,15
+ES,Navarra,14
+ES,Badajoz,13
+ES,Salamanca,12
+ES,Madrid,11
+ES,Vizcaya,10
+ES,Lleida,9
+ES,Ciudad,8
+ES,Tarragona,7
+ES,Melilla,6
+ES,Guipúzcoa,5
+ES,Baleares,4
+ES,Cáceres,3
+ES,La Rioja,2
+PL,Ostrołęka,26
+PL,Legnica,25
+PL,Otwock,24
+PL,Zakopane,23
+PL,Częstochowa,22
+PL,Rzeszów,21
+PL,Iława,20
+PL,Rybnik,19
+PL,Radomsko,18
+PL,Śrem,17
+PL,Sosnowiec,16
+PL,Cieszyn,15
+PL,Gniezno,14
+PL,Katowice,13
+PL,Bielsko-Biała,12
+PL,Oświęcim,11
+PL,Szczecinek,10
+PL,Gliwice,9
+PL,Zamość,8
+PL,Ruda Śląska,7
+PL,Zgorzelec,6
+PL,Świdnik,5
+PL,Toruń,4
+PL,Swarzędz,3
+PL,Wałbrzych,2
+US,Staciefurt,26
+US,North Loriville,25
+US,Brandihaven,24
+US,North Christopher,23
+US,Jonesland,22
+US,Brownshire,21
+US,East Crystalshire,20
+US,New Brendaton,19
+US,North Angela,18
+US,West Robert,17
+US,New Kyleburgh,16
+US,New Ashleyborough,15
+US,Connorland,14
+US,New Jamieside,13
+US,Watersmouth,12
+US,Wardbury,11
+US,Lake Kimberly,10
+US,New Kevinfort,9
+US,Jessicaport,8
+US,North Williamburgh,7
+US,Edwinfort,6
+US,Williamsland,5
+US,Matthewstad,4
+US,Rileymouth,3
+US,Port Claytonview,2

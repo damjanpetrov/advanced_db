@@ -85,7 +85,7 @@ psql -U postgres -d tech_shop -f 00_ddl/constraint_tests.sql
 | 4 | customer_attribute | ја немаше во DDL | додадена |
 | 5 | shipping | немаше `tracking_number` | додаден (UNIQUE), `delivered_date`, статусот е NOT NULL |
 | 6 | permissions | немаше име на дозвола | `permission(name UNIQUE, description)` |
-| 7 | сите `phone` | regex го одбиваше валидниот `+38970123456` | `^(\+389[0-9]{8}\|0[0-9]{8})$` |
+| 7 | сите `phone` | regex го одбиваше валидниот `+38970123456` | вработени: `^(\+389[0-9]{8}\|0[0-9]{8})$`; купувачи (миграција 001): `^(\+[1-9][0-9]{7,14}\|0[0-9]{8})$` — и странски броеви |
 | 8 | supplier | email не беше уникатен | уникатен индекс на `lower(email)` |
 | 9 | returns | `is_approved` дуплираше `status` | отстрането; `quantity`, `resolved_at`, CHECK за вработен |
 | 10 | installments | немаше рок и статус на рата | `installment_no`, `due_date`, `paid_at` |

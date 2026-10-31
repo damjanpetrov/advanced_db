@@ -98,8 +98,8 @@ CREATE TABLE customer
     email       VARCHAR(100) NOT NULL
         CHECK (email ~ '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'),
     password    VARCHAR(255) NOT NULL CHECK (length(password) >= 8),
-    phone       VARCHAR(20)
-        CHECK (phone IS NULL OR phone ~ '^(\+389[0-9]{8}|0[0-9]{8})$'),
+    phone       VARCHAR(20)                                  -- [v2.1] и странски броеви (E.164)
+        CHECK (phone IS NULL OR phone ~ '^(\+[1-9][0-9]{7,14}|0[0-9]{8})$'),
     created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     is_active   BOOLEAN   NOT NULL DEFAULT TRUE
 );
